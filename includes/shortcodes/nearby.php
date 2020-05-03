@@ -51,7 +51,7 @@ class Stellar_Places_Nearby_Shortcode {
 		);
 
 		if ( ! $atts['place'] && current_user_can( 'manage_options' ) ) {
-			return '<p style="color:red;">Please provide a location. This should be the post ID of a place. Example: [stellar_places_nearby location="12"]</p>';
+			return '<p style="color:red;">Please provide a location. This should be the post ID of a place. Example: [stellar_places_nearby place="12"]</p>';
 		}
 
 		$post  = get_post( $atts['place'] );
@@ -72,7 +72,7 @@ class Stellar_Places_Nearby_Shortcode {
 			'geo_query'    => array(
 				'lat'      => $place->latitude,
 				'lng'      => $place->longitude,
-				'distance' => 1,
+				'distance' => absint( $atts['distance'] ),
 			),
 		);
 
